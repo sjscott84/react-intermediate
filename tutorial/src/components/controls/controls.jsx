@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { startGame } from 'actions/actions';
+import PropTypes from 'prop-types';
 import './controls.scss';
 
 class Controls extends Component {
@@ -17,6 +19,7 @@ class Controls extends Component {
   }
 
   startGame () {
+    this.props.dispatch(startGame());
     this.setState({
       gameStartClass: '',
       gameInProgressClass: 'invisible',
@@ -53,4 +56,12 @@ class Controls extends Component {
   }
 }
 
-export default Controls;
+Controls.propTypes = {
+  dispatch: PropTypes.func.isRequired
+};
+
+const mapStateToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps)(Controls);
